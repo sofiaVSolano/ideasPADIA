@@ -54,10 +54,11 @@ const IdeaDetail = () => {
 
     const handleStatusChange = async (e) => {
         if (!user || user.role !== 'admin') return;
+        const newStatus = e.target.value;
         setStatusUpdateLoader(true);
         try {
-            await ideaService.updateStatus(idea.id, e.target.value);
-            setIdea({ ...idea, status: e.target.value });
+            await ideaService.updateStatus(idea.id, newStatus);
+            setIdea(prev => ({ ...prev, status: newStatus }));
         } catch (err) {
             alert("Error actualizando el estado");
         } finally {

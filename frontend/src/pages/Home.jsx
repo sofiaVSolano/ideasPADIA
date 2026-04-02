@@ -6,31 +6,44 @@ import { Link } from 'react-router-dom';
 const StatusBadge = ({ status }) => {
     const statusColors = {
         'idea': 'bg-gray-100 text-gray-800 border-gray-200',
-        'exploración': 'bg-blue-100 text-blue-800 border-blue-200',
-        'validada': 'bg-green-100 text-green-800 border-green-200',
-        'en proyecto': 'bg-purple-100 text-purple-800 border-purple-200',
-        'descartada': 'bg-red-100 text-red-800 border-red-200'
+        'exploración': 'bg-blue-100 text-blue-800 border-blue-300',
+        'validada': 'bg-green-100 text-green-800 border-green-300',
+        'en proyecto': 'bg-purple-100 text-purple-800 border-purple-300',
+        'desarrollada': 'bg-yellow-100 text-yellow-800 border-yellow-300',
+        'descartada': 'bg-red-100 text-red-800 border-red-300'
     };
 
     return (
-        <span className={`px-2.5 py-0.5 rounded-full text-xs font-semibold border ${statusColors[status] || statusColors['idea']}`}>
+        <span className={`px-2.5 py-0.5 rounded-full text-xs font-bold border ${statusColors[status] || statusColors['idea']} shadow-sm`}>
             {status.toUpperCase()}
         </span>
     );
 };
 
 const IdeaCard = ({ idea }) => {
+    // Definimos colores de borde y fondo muy leves según el estado para la tarjeta
+    const cardColors = {
+        'idea': 'border-gray-200 bg-white hover:border-gray-300',
+        'exploración': 'border-blue-200 bg-blue-50 hover:border-blue-300',
+        'validada': 'border-green-200 bg-green-50 hover:border-green-300',
+        'en proyecto': 'border-purple-200 bg-purple-50 hover:border-purple-300',
+        'desarrollada': 'border-yellow-200 bg-yellow-50 hover:border-yellow-300',
+        'descartada': 'border-red-200 bg-red-50 hover:border-red-300'
+    };
+
+    const cardClass = cardColors[idea.status] || cardColors['idea'];
+
     return (
-        <Link to={`/ideas/${idea.id}`} className="block bg-white rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-200 overflow-hidden group">
+        <Link to={`/ideas/${idea.id}`} className={`block rounded-xl shadow-sm border transition-all duration-200 overflow-hidden group ${cardClass}`}>
             <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
                         {idea.title}
                     </h3>
                     <StatusBadge status={idea.status} />
                 </div>
 
-                <p className="text-gray-600 text-sm mb-6 line-clamp-3 leading-relaxed">
+                <p className="text-gray-700 text-sm mb-6 line-clamp-3 leading-relaxed">
                     {idea.description}
                 </p>
 
@@ -38,14 +51,14 @@ const IdeaCard = ({ idea }) => {
                     <div className="flex items-center gap-2 mb-4 flex-wrap">
                         <TagIcon className="h-4 w-4 text-gray-400" />
                         {idea.tags.map(tag => (
-                            <span key={tag.id} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md font-medium">#{tag.name}</span>
+                            <span key={tag.id} className="bg-white/60 border border-black/5 text-gray-700 text-xs px-2 py-1 rounded-md font-medium">#{tag.name}</span>
                         ))}
                     </div>
                 )}
 
-                <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-50">
-                    <div className="flex items-center text-xs text-gray-500 font-medium">
-                        <UserIcon className="h-4 w-4 mr-1 text-gray-400" />
+                <div className="flex items-center justify-between mt-auto pt-4 border-t border-black/5">
+                    <div className="flex items-center text-xs text-gray-600 font-medium">
+                        <UserIcon className="h-4 w-4 mr-1 opacity-60" />
                         <span>ID Autor: {idea.author_id.slice(0, 8)}...</span>
                     </div>
                 </div>

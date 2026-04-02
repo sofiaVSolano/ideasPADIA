@@ -27,10 +27,18 @@ def get_dashboard_metrics(db: Session = Depends(get_db)):
     
     top_projects = [{"id": str(p.id), "name": p.name, "description": p.description, "votes": vc} for p, vc in top_projects_query]
 
+    # Traer todos los datos para las vistas detalladas en el admin
+    users_list = db.query(models.User).all()
+    ideas_list = db.query(models.Idea).all()
+    projects_list = db.query(models.Project).all()
+
     return {
         "total_ideas": total_ideas,
         "ideas_by_status": status_distribution,
         "total_projects": total_projects,
         "total_users": total_users,
-        "top_projects": top_projects
+        "top_projects": top_projects,
+        "users": [{"id": str(u.id), "name": u.name, "email": u.email, "role": u.role} for u in users_list],
+        "ideas": [{"id": str(i.id), "title": i.title, "status": i.status, "author": i.author.name if i.author else "Desconocido"} for i in ideas_list],
+        "projects": [{"id": str(p.id), "name": p.name, "is_winner": p.is_winner, "idea": p.idea.title if p.idea else "Desconocida"} for p in projects_list]
     }

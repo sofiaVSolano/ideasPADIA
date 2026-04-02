@@ -34,7 +34,7 @@ def update_idea_status(idea_id: str, status_update: schemas.IdeaStatusUpdate, db
     if not idea:
         raise HTTPException(status_code=404, detail="Idea no encontrada")
     
-    valid_statuses = ['idea', 'exploración', 'validada', 'en proyecto', 'descartada']
+    valid_statuses = ['idea', 'exploración', 'validada', 'en proyecto', 'desarrollada', 'descartada']
     if status_update.status not in valid_statuses:
         raise HTTPException(status_code=400, detail=f"Estado inválido. Debe ser: {', '.join(valid_statuses)}")
 
