@@ -68,7 +68,7 @@ const CreateIdea = () => {
         <div className="max-w-4xl mx-auto space-y-6">
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                 <div className="flex items-center gap-3 mb-6 border-b pb-4">
-                    <Wand2 className="h-6 w-6 text-purple-600" />
+                    <Wand2 className="h-6 w-6 text-gray-600" />
                     <h2 className="text-2xl font-bold text-gray-800">Generador de Ideas (Asistido por IA)</h2>
                 </div>
 
@@ -80,7 +80,7 @@ const CreateIdea = () => {
                             value={aiCategory}
                             onChange={(e) => setAiCategory(e.target.value)}
                             placeholder="Ej. Salud, Educación, Finanzas..."
-                            className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 outline-none text-sm"
+                            className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 outline-none text-sm"
                         />
                     </div>
                     <div>
@@ -90,7 +90,7 @@ const CreateIdea = () => {
                             value={aiContext}
                             onChange={(e) => setAiContext(e.target.value)}
                             placeholder="Busco soluciones móviles o usando IoT..."
-                            className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-purple-500 outline-none text-sm"
+                            className="w-full p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-gray-500 outline-none text-sm"
                         />
                     </div>
                 </div>
@@ -98,7 +98,7 @@ const CreateIdea = () => {
                 <button
                     onClick={handleGenerate}
                     disabled={aiLoading}
-                    className="mt-4 bg-purple-100 text-purple-700 font-semibold px-4 py-2 rounded-lg hover:bg-purple-200 transition-colors disabled:opacity-50 text-sm"
+                    className="mt-4 bg-gray-100 text-gray-700 font-semibold px-4 py-2 rounded-lg hover:bg-gray-200 transition-colors disabled:opacity-50 text-sm"
                 >
                     {aiLoading ? 'Generando...' : '💡 Obtener inspiraciones'}
                 </button>
@@ -112,7 +112,7 @@ const CreateIdea = () => {
                                     <span>{gi}</span>
                                     <button
                                         onClick={() => { setTitle(gi.replace(/^\d+\.\s*/, "")); setGeneratedIdeas([]); }}
-                                        className="text-xs text-blue-600 font-medium hover:underline bg-blue-50 px-2 py-1 rounded"
+                                        className="text-xs text-orange-600 font-medium hover:underline bg-orange-50 px-2 py-1 rounded"
                                     >
                                         Usar título
                                     </button>
@@ -125,11 +125,11 @@ const CreateIdea = () => {
 
             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200">
                 <h2 className="text-2xl font-bold text-gray-800 mb-6 flex items-center gap-2">
-                    <Lightbulb className="text-blue-500 h-6 w-6" />
+                    <Lightbulb className="text-orange-500 h-6 w-6" />
                     Registrar Nueva Idea
                 </h2>
 
-                {error && <div className="mb-4 bg-red-50 text-red-700 p-3 rounded-lg text-sm">{error}</div>}
+                {error && <div className="mb-4 bg-orange-50 text-orange-700 p-3 rounded-lg text-sm">{error}</div>}
 
                 <form onSubmit={handleSubmit} className="space-y-5">
                     <div>
@@ -139,7 +139,7 @@ const CreateIdea = () => {
                             required
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none"
                             placeholder="Describe tu idea en un título corto"
                         />
                     </div>
@@ -151,7 +151,7 @@ const CreateIdea = () => {
                                 type="button"
                                 onClick={handleEnrich}
                                 disabled={enrichLoading}
-                                className="text-xs font-semibold text-purple-600 hover:text-purple-800 disabled:opacity-50"
+                                className="text-xs font-semibold text-gray-600 hover:text-gray-800 disabled:opacity-50"
                             >
                                 ✨ {enrichLoading ? 'Escribiendo por ti...' : 'Mejorar texto con IA'}
                             </button>
@@ -161,7 +161,7 @@ const CreateIdea = () => {
                             rows={6}
                             value={description}
                             onChange={(e) => setDescription(e.target.value)}
-                            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none resize-y"
+                            className="w-full p-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none resize-y"
                             placeholder="Explica el problema que resuelves, las tecnologías y su utilidad."
                         />
                     </div>
@@ -170,7 +170,7 @@ const CreateIdea = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="bg-blue-600 text-white font-semibold flex items-center justify-center gap-2 px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-200 disabled:opacity-50"
+                            className="bg-orange-600 text-white font-semibold flex items-center justify-center gap-2 px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-200 disabled:opacity-50"
                         >
                             {loading ? 'Guardando...' : 'Publicar Idea'}
                             {!loading && <ArrowRight className="h-4 w-4" />}

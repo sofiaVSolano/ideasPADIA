@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 const StatusBadge = ({ status }) => {
     const statusColors = {
         'idea': 'bg-gray-100 text-gray-800 border-gray-200',
-        'exploración': 'bg-blue-100 text-blue-800 border-blue-300',
-        'validada': 'bg-green-100 text-green-800 border-green-300',
-        'en proyecto': 'bg-purple-100 text-purple-800 border-purple-300',
-        'desarrollada': 'bg-yellow-100 text-yellow-800 border-yellow-300',
-        'descartada': 'bg-red-100 text-red-800 border-red-300'
+        'exploración': 'bg-orange-100 text-orange-800 border-orange-300',
+        'validada': 'bg-orange-100 text-orange-800 border-orange-300',
+        'en proyecto': 'bg-gray-100 text-gray-800 border-gray-300',
+        'desarrollada': 'bg-orange-100 text-orange-800 border-orange-300',
+        'descartada': 'bg-orange-100 text-orange-800 border-orange-300'
     };
 
     return (
@@ -24,11 +24,11 @@ const IdeaCard = ({ idea }) => {
     // Definimos colores de borde y fondo muy leves según el estado para la tarjeta
     const cardColors = {
         'idea': 'border-gray-200 bg-white hover:border-gray-300',
-        'exploración': 'border-blue-200 bg-blue-50 hover:border-blue-300',
-        'validada': 'border-green-200 bg-green-50 hover:border-green-300',
-        'en proyecto': 'border-purple-200 bg-purple-50 hover:border-purple-300',
-        'desarrollada': 'border-yellow-200 bg-yellow-50 hover:border-yellow-300',
-        'descartada': 'border-red-200 bg-red-50 hover:border-red-300'
+        'exploración': 'border-orange-200 bg-orange-50 hover:border-orange-300',
+        'validada': 'border-orange-200 bg-orange-50 hover:border-orange-300',
+        'en proyecto': 'border-gray-200 bg-gray-50 hover:border-gray-300',
+        'desarrollada': 'border-orange-200 bg-orange-50 hover:border-orange-300',
+        'descartada': 'border-orange-200 bg-orange-50 hover:border-orange-300'
     };
 
     const cardClass = cardColors[idea.status] || cardColors['idea'];
@@ -37,7 +37,7 @@ const IdeaCard = ({ idea }) => {
         <Link to={`/ideas/${idea.id}`} className={`block rounded-xl shadow-sm border transition-all duration-200 overflow-hidden group ${cardClass}`}>
             <div className="p-6">
                 <div className="flex justify-between items-start mb-4">
-                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors">
+                    <h3 className="text-xl font-bold text-gray-900 group-hover:text-orange-700 transition-colors">
                         {idea.title}
                     </h3>
                     <StatusBadge status={idea.status} />
@@ -104,14 +104,14 @@ const Home = () => {
 
                 <Link
                     to="/ideas/crear"
-                    className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-blue-600 rounded-lg shadow-sm hover:bg-blue-700 transition ease-in-out duration-150 gap-2 shrink-0 md:w-auto w-full justify-center"
+                    className="inline-flex items-center px-5 py-2.5 text-sm font-semibold text-white bg-orange-600 rounded-lg shadow-sm hover:bg-orange-700 transition ease-in-out duration-150 gap-2 shrink-0 md:w-auto w-full justify-center"
                 >
                     <Plus className="h-5 w-5" />
                     Nueva Idea
                 </Link>
             </div>
 
-            {error && <div className="p-4 mb-6 text-sm text-red-800 rounded-lg border border-red-200 bg-red-50" role="alert">{error}</div>}
+            {error && <div className="p-4 mb-6 text-sm text-orange-800 rounded-lg border border-orange-200 bg-orange-50" role="alert">{error}</div>}
 
             <div className="bg-white p-4 rounded-xl shadow-sm border border-gray-200 mb-8 flex flex-col sm:flex-row gap-4 items-center">
                 <input
@@ -119,12 +119,12 @@ const Home = () => {
                     placeholder="Buscar por título o contenido..."
                     value={search}
                     onChange={(e) => setSearch(e.target.value)}
-                    className="w-full sm:w-2/3 p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+                    className="w-full sm:w-2/3 p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none text-sm"
                 />
                 <select
                     value={filter}
                     onChange={(e) => setFilter(e.target.value)}
-                    className="w-full sm:w-1/3 p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500 outline-none text-sm bg-white font-medium text-gray-700"
+                    className="w-full sm:w-1/3 p-2.5 rounded-lg border border-gray-300 focus:ring-2 focus:ring-orange-500 outline-none text-sm bg-white font-medium text-gray-700"
                 >
                     <option value="Todas">Todos los estados</option>
                     <option value="Idea">Idea</option>
@@ -137,7 +137,7 @@ const Home = () => {
 
             {loading ? (
                 <div className="flex justify-center items-center h-64">
-                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-orange-600"></div>
                 </div>
             ) : filteredIdeas.length > 0 ? (
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

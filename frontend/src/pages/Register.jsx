@@ -31,9 +31,9 @@ const Register = () => {
     return (
         <div className="flex items-center justify-center min-h-screen bg-gray-50">
             <div className="bg-white p-8 rounded-xl shadow-lg w-full max-w-md">
-                <h2 className="text-3xl font-bold text-center text-blue-600 mb-8">Crear Cuenta</h2>
+                <h2 className="text-3xl font-bold text-center text-orange-600 mb-8">Crear Cuenta</h2>
 
-                {error && <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">{error}</div>}
+                {error && <div className="bg-orange-100 border border-orange-400 text-orange-700 px-4 py-3 rounded relative mb-4">{error}</div>}
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <div>
@@ -45,7 +45,7 @@ const Register = () => {
                                 name="name"
                                 value={formData.name}
                                 onChange={handleChange}
-                                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
                                 placeholder="Juan Pérez"
                                 required
                             />
@@ -61,7 +61,7 @@ const Register = () => {
                                 name="email"
                                 value={formData.email}
                                 onChange={handleChange}
-                                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
                                 placeholder="correo@ejemplo.com"
                                 required
                             />
@@ -77,7 +77,7 @@ const Register = () => {
                                 name="password"
                                 value={formData.password}
                                 onChange={handleChange}
-                                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                                className="pl-10 w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
                                 placeholder="••••••••"
                                 required
                                 minLength={6}
@@ -88,14 +88,14 @@ const Register = () => {
                     <button
                         type="submit"
                         disabled={loading}
-                        className="w-full bg-blue-600 text-white p-3 rounded-lg font-semibold hover:bg-blue-700 transition duration-200 mt-4 disabled:opacity-50"
+                        className="w-full bg-orange-600 text-white p-3 rounded-lg font-semibold hover:bg-orange-700 transition duration-200 mt-4 disabled:opacity-50"
                     >
                         {loading ? 'Registrando...' : 'Registrarse'}
                     </button>
                 </form>
 
                 <p className="mt-6 text-center text-sm text-gray-600">
-                    ¿Ya tienes cuenta? <Link to="/login" className="text-blue-600 font-medium hover:underline">Inicia Sesión</Link>
+                    ¿Ya tienes cuenta? <Link to="/login" className="text-orange-600 font-medium hover:underline">Inicia Sesión</Link>
                 </p>
             </div>
         </div>

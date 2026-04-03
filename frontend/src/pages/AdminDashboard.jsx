@@ -43,19 +43,19 @@ const AdminDashboard = () => {
     }, [user, navigate]);
 
     if (loading) return <div className="text-center py-20 text-gray-500 font-bold animate-pulse">Cargando panel de administración...</div>;
-    if (error) return <div className="text-center py-20 text-red-500 font-bold flex flex-col items-center"><AlertCircle className="mb-4 h-12 w-12 text-red-400" /> {error}</div>;
+    if (error) return <div className="text-center py-20 text-orange-500 font-bold flex flex-col items-center"><AlertCircle className="mb-4 h-12 w-12 text-orange-400" /> {error}</div>;
 
     const statCards = [
-        { id: 'ideas', title: 'Total Ideas', value: stats.total_ideas, icon: <Lightbulb className="h-8 w-8 text-yellow-500" />, bg: 'bg-yellow-50', border: 'border-yellow-200' },
-        { id: 'projects', title: 'Proyectos Activos', value: stats.total_projects, icon: <Workflow className="h-8 w-8 text-blue-500" />, bg: 'bg-blue-50', border: 'border-blue-200' },
-        { id: 'users', title: 'Usuarios Registrados', value: stats.total_users, icon: <Users className="h-8 w-8 text-green-500" />, bg: 'bg-green-50', border: 'border-green-200' },
+        { id: 'ideas', title: 'Total Ideas', value: stats.total_ideas, icon: <Lightbulb className="h-8 w-8 text-orange-500" />, bg: 'bg-orange-50', border: 'border-orange-200' },
+        { id: 'projects', title: 'Proyectos Activos', value: stats.total_projects, icon: <Workflow className="h-8 w-8 text-orange-500" />, bg: 'bg-orange-50', border: 'border-orange-200' },
+        { id: 'users', title: 'Usuarios Registrados', value: stats.total_users, icon: <Users className="h-8 w-8 text-orange-500" />, bg: 'bg-orange-50', border: 'border-orange-200' },
     ];
 
     return (
         <div className="max-w-6xl mx-auto space-y-8">
             <div className="flex justify-between items-center mb-8">
                 <h1 className="text-3xl font-extrabold text-gray-900 flex items-center">
-                    <Database className="h-8 w-8 mr-4 text-purple-600" />
+                    <Database className="h-8 w-8 mr-4 text-gray-600" />
                     Panel de Administración
                 </h1>
                 <div className="flex items-center gap-2">
@@ -67,7 +67,7 @@ const AdminDashboard = () => {
                             ← Volver a métricas
                         </button>
                     )}
-                    <span className="bg-purple-100 text-purple-800 text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wider">Modo Vista Global</span>
+                    <span className="bg-gray-100 text-gray-800 text-xs font-bold px-3 py-2 rounded-full uppercase tracking-wider">Modo Vista Global</span>
                 </div>
             </div>
 
@@ -95,13 +95,13 @@ const AdminDashboard = () => {
                     {/* Ideas por Estado */}
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                         <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center">
-                            <BarChart3 className="h-5 w-5 mr-3 text-indigo-500" /> Distribución de Ideas
+                            <BarChart3 className="h-5 w-5 mr-3 text-orange-500" /> Distribución de Ideas
                         </h3>
                         <div className="space-y-4">
                             {Object.entries(stats.ideas_by_status).map(([status, count]) => (
                                 <div key={status} className="flex justify-between items-center p-3 hover:bg-gray-50 rounded-lg transition">
                                     <span className="font-semibold text-gray-700 capitalize text-sm">{status}</span>
-                                    <span className="bg-indigo-100 text-indigo-800 font-bold px-3 py-1 rounded-full text-xs">{count}</span>
+                                    <span className="bg-orange-100 text-orange-800 font-bold px-3 py-1 rounded-full text-xs">{count}</span>
                                 </div>
                             ))}
                         </div>
@@ -110,21 +110,21 @@ const AdminDashboard = () => {
                     {/* Top Proyectos Votados */}
                     <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
                         <h3 className="text-lg font-bold text-gray-900 mb-6 flex items-center">
-                            <Workflow className="h-5 w-5 mr-3 text-pink-500" /> Proyectos Destacados (Votos)
+                            <Workflow className="h-5 w-5 mr-3 text-orange-500" /> Proyectos Destacados (Votos)
                         </h3>
                         {stats.top_projects?.length === 0 ? (
                             <p className="text-sm text-gray-400 text-center py-10 bg-gray-50 rounded-xl border border-dashed">Sin proyectos aún</p>
                         ) : (
                             <div className="space-y-4">
                                 {stats.top_projects.map(proj => (
-                                    <div key={proj.id} className="border border-gray-100 p-4 rounded-xl flex justify-between items-center hover:border-pink-200 transition bg-white shadow-sm hover:shadow">
+                                    <div key={proj.id} className="border border-gray-100 p-4 rounded-xl flex justify-between items-center hover:border-orange-200 transition bg-white shadow-sm hover:shadow">
                                         <div>
                                             <p className="font-bold text-gray-900 mb-1">{proj.name}</p>
                                             <p className="text-xs text-gray-500 line-clamp-1">{proj.description}</p>
                                         </div>
-                                        <div className="flex flex-col items-center bg-pink-50 px-4 py-2 rounded-lg border border-pink-100">
-                                            <span className="text-xl font-extrabold text-pink-600">{proj.votes}</span>
-                                            <span className="text-[10px] font-bold text-pink-400 uppercase tracking-widest">votos</span>
+                                        <div className="flex flex-col items-center bg-orange-50 px-4 py-2 rounded-lg border border-orange-100">
+                                            <span className="text-xl font-extrabold text-orange-600">{proj.votes}</span>
+                                            <span className="text-[10px] font-bold text-orange-400 uppercase tracking-widest">votos</span>
                                         </div>
                                     </div>
                                 ))}
@@ -138,7 +138,7 @@ const AdminDashboard = () => {
             {activeTab === 'users' && (
                 <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm animate-fade-in">
                     <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                        <Users className="h-6 w-6 mr-3 text-green-500" /> Lista de Usuarios Registrados
+                        <Users className="h-6 w-6 mr-3 text-orange-500" /> Lista de Usuarios Registrados
                     </h3>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
@@ -155,7 +155,7 @@ const AdminDashboard = () => {
                                         <td className="p-3 font-semibold text-gray-900">{u.name}</td>
                                         <td className="p-3 text-gray-600">{u.email}</td>
                                         <td className="p-3">
-                                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase ${u.role === 'admin' ? 'bg-purple-100 text-purple-800' : 'bg-gray-100 text-gray-800'}`}>
+                                            <span className={`px-2.5 py-1 rounded-full text-xs font-bold uppercase ${u.role === 'admin' ? 'bg-gray-100 text-gray-800' : 'bg-gray-100 text-gray-800'}`}>
                                                 {u.role}
                                             </span>
                                         </td>
@@ -170,7 +170,7 @@ const AdminDashboard = () => {
             {activeTab === 'ideas' && (
                 <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm animate-fade-in">
                     <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                        <Lightbulb className="h-6 w-6 mr-3 text-yellow-500" /> Lista de Ideas
+                        <Lightbulb className="h-6 w-6 mr-3 text-orange-500" /> Lista de Ideas
                     </h3>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
@@ -188,12 +188,12 @@ const AdminDashboard = () => {
                                         <td className="p-3 font-semibold text-gray-900 truncate max-w-xs">{i.title}</td>
                                         <td className="p-3 text-gray-600">{i.author}</td>
                                         <td className="p-3">
-                                            <span className="bg-indigo-50 text-indigo-700 px-2.5 py-1 rounded-full text-xs font-bold uppercase">
+                                            <span className="bg-orange-50 text-orange-700 px-2.5 py-1 rounded-full text-xs font-bold uppercase">
                                                 {i.status}
                                             </span>
                                         </td>
                                         <td className="p-3">
-                                            <button onClick={() => navigate(`/idea/${i.id}`)} className="text-blue-600 hover:text-blue-800 font-semibold text-xs uppercase hover:underline">Ver Detalle</button>
+                                            <button onClick={() => navigate(`/idea/${i.id}`)} className="text-orange-600 hover:text-orange-800 font-semibold text-xs uppercase hover:underline">Ver Detalle</button>
                                         </td>
                                     </tr>
                                 ))}
@@ -206,7 +206,7 @@ const AdminDashboard = () => {
             {activeTab === 'projects' && (
                 <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm animate-fade-in">
                     <h3 className="text-xl font-bold text-gray-900 mb-6 flex items-center">
-                        <Workflow className="h-6 w-6 mr-3 text-blue-500" /> Lista de Proyectos Activos
+                        <Workflow className="h-6 w-6 mr-3 text-orange-500" /> Lista de Proyectos Activos
                     </h3>
                     <div className="overflow-x-auto">
                         <table className="w-full text-left text-sm">
@@ -224,7 +224,7 @@ const AdminDashboard = () => {
                                         <td className="p-3 text-gray-600 truncate max-w-xs">{p.idea}</td>
                                         <td className="p-3">
                                             {p.is_winner ? (
-                                                <span className="bg-yellow-100 text-yellow-800 px-2.5 py-1 rounded-full text-xs font-bold uppercase">Sí</span>
+                                                <span className="bg-orange-100 text-orange-800 px-2.5 py-1 rounded-full text-xs font-bold uppercase">Sí</span>
                                             ) : (
                                                 <span className="text-gray-400 font-semibold">-</span>
                                             )}
